@@ -18,10 +18,10 @@ namespace EnumConsole
             List<Card> hand = CardUtilities.DealHand(shuffledDeck, 5);
             foreach (Card card in hand)
             {
-                Console.Write(card.value);
-                Console.WriteLine(card.suit);
+                Console.WriteLine(card.value + " of " + card.suit);
             }
-            Console.WriteLine(hand.Count);
+
+            Console.WriteLine("-------------------");
 
             Console.WriteLine(CardUtilities.ToName("5D"));
             Console.ReadKey();

@@ -30,11 +30,12 @@ namespace EnumLibrary
             if (CardSuitName != "")
             {
                 return CardValName + " of " + CardSuitName;
-            } else
+            }
+            else
             {
                 return "The card you have provided does not exist";
             }
-            
+
         }
 
         public static List<Card> GenerateDeck()
@@ -57,7 +58,7 @@ namespace EnumLibrary
             Random rand = new Random();
             List<Card> shuffledDeck = new List<Card>();
 
-            for (int i = 0; i <= CardsDeck.Count-1; ++i)
+            for (int i = 0; i <= CardsDeck.Count - 1; ++i)
             {
                 int randIndex = rand.Next(0, i);
 
@@ -74,6 +75,38 @@ namespace EnumLibrary
             hand.RemoveRange(0, 52 - n); // As the deck is already shuffled, we don't need to worry about the randomness
 
             return hand;
+        }
+
+        public static List<Card> LongestRun(List<Card> deck)
+        {
+            List<Card> LongestRun = new List<Card>();
+            List<Card> PossibleLongestRun = new List<Card>();
+            foreach (Card card in deck)
+            {
+                PossibleLongestRun.Add(card);
+                deck.RemoveAt(0);
+                int cardVal = Int32.Parse(Enum.GetName(typeof(CardVals), card.value));
+                foreach (Card nextCard in deck)
+                {
+                    int nextCardVal = Int32.Parse(Enum.GetName(typeof(CardVals), nextCard.value));
+                    if (cardVal == nextCardVal)
+                    {
+                        PossibleLongestRun.Add(nextCard);
+                    }
+                    else if (LongestRun.Count < PossibleLongestRun.Count)
+                    {
+                        LongestRun = PossibleLongestRun;
+                        PossibleLongestRun.Clear();
+                    }
+                }
+                if (LongestRun.Count < PossibleLongestRun.Count)
+                {
+                    LongestRun = PossibleLongestRun;
+                }
+                PossibleLongestRun.Clear();
+            }
+
+            return LongestRun;
         }
     }
 }

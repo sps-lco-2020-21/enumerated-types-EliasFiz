@@ -43,6 +43,7 @@
     <Compile Include="Card.cs" />
     <Compile Include="CardUtilities.cs" />
     <Compile Include="CardVals.cs" />
+    <Compile Include="Colours.cs" />
     <Compile Include="Months.cs" />
     <Compile Include="MonthUtilities.cs" />
     <Compile Include="Suits.cs" />
